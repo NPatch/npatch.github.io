@@ -1,0 +1,21 @@
+{
+    "folders": [
+		{
+			"path": "."
+		}
+    ],
+    "settings": {
+		"git.enabled": false,
+        "livePreview.autoRefreshPreview": "Never",
+        "terminal.integrated.profiles.windows": {
+			"PowerShell": {
+				"source": "PowerShell"
+			}
+		}
+    },
+    "extensions": {
+		"unwantedRecommendations": [
+			"ms-vscode.powershell"
+		]
+	}
+}
