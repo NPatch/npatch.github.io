@@ -1,0 +1,137 @@
+baseURL = 'https://npatch.github.io/'
+languageCode = 'en-us'
+title = "npatch"
+theme = "LoveIt"
+avatar = "avatar.jpg"
+
+# whether to use robots.txt
+# ???? robots.txt
+#enableRobotsTXT = true
+# whether to use git commit log
+# ???? git ??
+#enableGitInfo = true
+# whether to use emoji code
+# ???? emoji ??
+#enableEmoji = true
+
+[params]
+# LoveIt theme version
+#version = "0.62.X"
+#defaultTheme = "dark"
+
+
+#[menu]
+#
+#[[menu.main]]
+#identifier = "posts"
+## you can add extra information before the name (HTML format is supported), #such as icons
+#pre = ""
+## you can add extra information after the name (HTML format is supported), such #as icons
+#post = ""
+#name = "Posts"
+#url = "/posts/"
+## title will be shown when you hover on this menu link
+#title = ""
+#weight = 1
+
+#[[menu.main]]
+#identifier = "tags"
+#pre = ""
+#post = ""
+#name = "Tags"
+#url = "/tags/"
+#title = ""
+#weight = 2
+#
+#[[menu.main]]
+#identifier = "categories"
+#pre = ""
+#post = ""
+#name = "Categories"
+#url = "/categories/"
+#title = ""
+#weight = 3
+#
+## Markup related configuration in Hugo
+#[markup]
+#
+## Syntax Highlighting (https://gohugo.io/content-management/syntax-highlighting)
+#[markup.highlight]
+## false is a necessary configuration (https://github.com/dillonzq/LoveIt/issues/#158)
+#noClasses = false
+#
+## Author config
+## ????
+#[author]
+#name = "Nikolaos Patsiouras"
+#email = "npatsiouras@gmail.com"
+#link = ""
+#
+#[params.home.profile]
+#enable = true
+## Gravatar Email for preferred avatar in home page
+#gravatarEmail = ""
+## URL of avatar shown in home page
+#avatarURL = "/images/avatar.jpg"
+## title shown in home page (HTML format is supported)
+#title = ""
+## subtitle shown in home page
+#subtitle = "Adventures in programming, games and more"
+## whether to use typeit animation for subtitle
+#typeit = true
+## whether to show social links
+#social = true
+## disclaimer (HTML format is supported)
+#disclaimer = ""
+#
+## Home page posts
+#[params.home.posts]
+#enable = false
+## special amount of posts in each home posts page
+#paginate = 6
+#
+#[params.social]
+#[params.social.Twitter]
+## weight when arranging icons (the greater the weight, the later the icon is #positioned)
+#weight = 0
+## your social ID
+#id = "@npatsiouras"
+## prefix of your social link
+#prefix = "https://twitter.com"
+## content hovering on the icon
+#title = "Twitter"
+#[params.social.Mastodon]
+## weight when arranging icons (the greater the weight, the later the icon is #positioned)
+#weight = 0
+## your social ID
+#id = "@npatsiouras"
+## prefix of your social link
+#prefix = "https://mastodon.gamedev.place/web/"
+## content hovering on the icon
+#title = "Mastodon"
+#
+## Footer config
+## ????????
+#[params.footer]
+#enable = true
+## Custom content (HTML format is supported)
+## ????? (?? HTML ??)
+#custom = ''
+## whether to show Hugo and theme info
+## ???? Hugo ?????
+#hugo = true
+## whether to show copyright info
+## ????????
+#copyright = true
+## whether to show the author
+## ??????
+#author = true
+## site creation time
+## ??????
+#since = 2022
+## ICP info only in China (HTML format is supported)
+## ICP ????,?????? (?? HTML ??)
+#icp = ""
+## license info (HTML format is supported)
+## ?????? (?? HTML ??)
+##license= '<a rel="license external nofollow noopener noreffer" href="https://#creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a>'
