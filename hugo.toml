@@ -4,6 +4,10 @@ languageCode = 'en-us'
 theme = "LoveIt"
 avatar = "avatar.jpg"
 
+[module]
+[[module.imports]]
+  path = "LoveIt"
+
 [params]
   copyright-year = '2024'
   subtitle = 'The Best Widgets on Earth'
