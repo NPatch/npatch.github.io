@@ -6,7 +6,7 @@ avatar = "avatar.jpg"
 
 [module]
 [[module.imports]]
-  path = "LoveIt"
+  path = "loveit"
 
 [params]
   copyright-year = '2024'
