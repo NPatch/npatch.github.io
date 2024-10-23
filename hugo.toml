@@ -1,8 +1,9 @@
 baseURL = 'https://npatch.github.io/'
 languageCode = 'en-us'
-#title = "npatch"
 theme = "LoveIt"
 avatar = "avatar.jpg"
+title = "npatch's blog"
+description = "Adventures in programming, games and more"
 
 [module]
 [[module.imports]]
@@ -10,8 +11,8 @@ avatar = "avatar.jpg"
 
 [params]
   copyright-year = '2024'
-  subtitle = 'The Best Widgets on Earth'
-  title = 'HAHA2'
+  title = "npatch's blog"
+  description = "Adventures in programming, games and more"
   [params.author]
     email = 'npatsiouras@gmail.com'
     name = 'Nikolaos Patsiouras'
@@ -22,8 +23,18 @@ avatar = "avatar.jpg"
   version = "0.2.X"
   defaultTheme = "dark"
   [params.header]
-  title = ""
-  description = ""
+  description = "Adventures in programming, games and more"
+  [params.header.title]
+    # URL of the LOGO
+    logo = ""
+    # title name
+    name = "npatch's blog"
+    # you can add extra information before the name (HTML format is supported), such as icons
+    pre = ""
+    # you can add extra information after the name (HTML format is supported), such as icons
+    post = ""
+    # whether to use typeit animation for title name
+    typeit = false
 
 [params.home.profile]
 enable = true
