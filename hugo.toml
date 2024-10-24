@@ -161,3 +161,15 @@ since = 2024
 icp = ""
 # license info (HTML format is supported)
 #license= '<a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a>'
+
+
+[params.page.comment]
+  enable = true
+  # Disqus comment config
+  [params.page.comment.disqus]
+    # LoveIt NEW | 0.1.1
+    enable = true
+    # Disqus shortname to use Disqus in posts
+    shortname = "Nikos P."
+
+
