@@ -102,7 +102,12 @@ weight = 1
 
 # Markup related configuration in Hugo
 [markup]
-
+[markup.goldmark]
+autoHeadingID = true
+autoHeadingIDType = 'github'
+[markup.goldmark.renderer]
+unsafe= true
+hardWraps = true
 # Syntax Highlighting (https://gohugo.io/content-management/yntax-highlighting)
 [markup.highlight]
 # false is a necessary configuration (https://github.com/dillonzq/LoveIt/issues/#158)
