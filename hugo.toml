@@ -112,6 +112,10 @@ hardWraps = true
 [markup.highlight]
 # false is a necessary configuration (https://github.com/dillonzq/LoveIt/issues/#158)
 noClasses = false
+[markup.tableOfContents]
+  ordered = false
+  startLevel = 2
+  endLevel = 6
 
 [taxonomies]
 tag = 'tags'
@@ -122,6 +126,13 @@ tag = 'tags'
 enable = false
 # special amount of posts in each home posts page
 paginate = 6
+[params.page.toc]
+# whether to enable the table of the contents
+enable = true
+# LoveIt NEW | 0.2.9 whether to keep the static table of the contents in front of the post
+keepStatic = false
+# whether to make the table of the contents in the sidebar automatically collapsed
+auto = false
 
 [params.social.X-Twitter]
 weight = 1
