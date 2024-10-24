@@ -3,6 +3,7 @@ languageCode = 'en-us'
 theme = "LoveIt"
 avatar = "avatar.jpg"
 title = "Adventures in programming, games and more"
+description = "blog about my projects,thoughts and other stuff"
 
 [module]
 [[module.imports]]
@@ -11,7 +12,7 @@ title = "Adventures in programming, games and more"
 [params]
   copyright-year = '2024'
   title = "npatch's blog"
-  description = "Adventures in programming, games and more"
+  description = "blog about my projects,thoughts and other stuff"
   [params.author]
     email = 'npatsiouras@gmail.com'
     name = 'Nikolaos Patsiouras'
@@ -23,7 +24,7 @@ title = "Adventures in programming, games and more"
   version = "0.2.X"
   defaultTheme = "dark"
   [params.header]
-  description = "Adventures in programming, games and more"
+  description = "blog about my projects,thoughts and other stuff"
   [params.header.title]
     # URL of the LOGO
     logo = ""
