@@ -1,0 +1,16 @@
++++
+date = '2016-08-17T11:17:45+03:00'
+lastmod = '2021-03-30T21:36:45+03:00'
+draft = true
+title = 'Unity, Kinect v2 and various Optimizations'
++++
+
+Long overdue, but here are some improvements for the combination of Kinect v2 SDK and Unity. Disclaimer: some of these issues/profiling data have been taken from the Unity 5 cycle, but seeing as the Kinect package has not been improved since, the numbers might be better(Incremental GC?!), but they will still be there.
+
+Kinect plugin constructs a Dictionary<JointType,Joint> each time you try to access the positional data for a given joint. That stems from the fact that , based on the documentation, they cannot guarantee the provision of all joint data ,each frame, to reduce the amount of data they pass. In my experience so far, I have yet to see this happen. The SDK always sends the full joint list, even if some joints are flagged as inferred. The issue is that this Dictionary is updated per-frame and per-access and it happens on all kinds of data passed around(joint orientations, activities etc). 
+What you can do is to modify Windows/Kinect/Body.cs and move the managedDictionaries up top as class fields with field initializers and giving a capacity. While using a capacity in a dictionary initializer might take up more space ,depending on the eventual item count, it's still faster. Unity's profiler showed a decrease of GC allocs from 17kb to 3.5kb for a specific function querying the position of a joint for all tracked bodies.
+
+Pinned memory for buffers that we update per-frame. Make sure that GC won't go near them, or even look at them. The dictionaries mentioned before can be further improved by pinning them, thus removing the allocations altogether. We can also improve any garbage created, by providing a custom comparer to it to reduce some of the checks in an access.
+Furthermore while copying frame buffers from Kinect SDK to out own, sing frame functions that end up with Array(for example, [ColorFrame.CopyConvertedFrameDataToArray](https://msdn.microsoft.com/en-us/library/windowspreview.kinect.colorframe.copyconvertedframedatatoarray.aspx)) will produce gargabe, as it means that you always allocate a new array and also copy over the data to that new array and then assigning that new allocation to the buffer you have, leaving the old array in mem space to get collected by the Garbage Collector. Instead use functions in the SDK that allow you to use an IntPtr (ColorFrame.CopyConvertedFrameDataToIntPtr). The reason this is useful is that you can allocate memory upfront and pin it using a GC.Handle and then only pay the cost of copying blocks of memory straight from their intptr to the pinned block.The best case scenario would be to go full compute shader based, if possible. In this case, intermediate textures can just be RenderTextures which are GPU only, therefore no GC involved.
+
+In case you decide to use the GPU, compute or otherwise, make sure to use a GPU debugger tool. Unity comes with an out of the box integration to RenderDoc which is an amazing tool.
