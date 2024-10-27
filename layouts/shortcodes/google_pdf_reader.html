@@ -1,0 +1,20 @@
+{{- if .IsNamedParams -}}
+{{- $gid := .Get "gid" | default "" -}}
+{{- $title := .Get "title" | default "" -}}
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>{{ $title }}</title>
+    <meta charset="UTF-8" />
+  </head>
+  <body>
+    <div id="app">
+      <iframe
+        src="https://drive.google.com/file/d/{{ $gid }}/preview"
+        width="100%"
+        height="1000">
+      </iframe>
+    </div>
+  </body>
+</html>
+{{- end -}}
