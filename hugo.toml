@@ -100,6 +100,15 @@ weight = 1
 #title = ""
 #weight = 3
 
+[[menu.main]]
+identifier = "about"
+pre = ""
+post = ""
+name = "About"
+url = "/about/"
+title = "About"
+weight = 3
+
 # Markup related configuration in Hugo
 [markup]
 [markup.goldmark]
