@@ -1,5 +1,6 @@
 {
     "recommendations": [
-        "rusnasonov.vscode-hugo"
+        "rusnasonov.vscode-hugo",
+        "davidanson.vscode-markdownlint"
     ]
 }

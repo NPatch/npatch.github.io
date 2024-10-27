@@ -7,6 +7,7 @@
     "settings": {
 		"git.enabled": false,
         "livePreview.autoRefreshPreview": "Never",
+		"markdownlint.focusMode": true,
         "terminal.integrated.profiles.windows": {
 			"PowerShell": {
 				"source": "PowerShell"
@@ -14,6 +15,10 @@
 		}
     },
     "extensions": {
+		"recommendations": [
+			"rusnasonov.vscode-hugo",
+        	"davidanson.vscode-markdownlint"
+		],
 		"unwantedRecommendations": [
 			"ms-vscode.powershell"
 		]
