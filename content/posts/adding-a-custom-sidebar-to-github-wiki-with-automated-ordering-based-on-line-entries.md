@@ -12,6 +12,7 @@ The `Pages` dropdown widget contains all pages with an alphabetical order and it
 In order to create your very own and custom `Table of Contents` with auto updated ordering depending on the line you define each entry, create a custom `Sidebar` exactly like `Github` suggests.
 
 In the main body write :
+
 ```markdown
 //Edit <Username> and <Project Name> to reflect your situation
 1.[Home](https://github.com/<Username>/<Project Name>/wiki)
@@ -19,5 +20,6 @@ In the main body write :
 + [<SecondPageName>](https://github.com/<Username>/<Project Name>/wiki/<SecondPageName>)
 + [<ThirdPageName>](https://github.com/<Username>/<Project Name>/wiki/<ThirdPageName>)
 ```
+
 <br/>
-Ordering starts from index 1 with the Home page which is the default wiki entrance. Everything else will just get the +
+Ordering starts from index 1 with the Home page which is the default wiki entrance. Everything else will just get the incremented index.

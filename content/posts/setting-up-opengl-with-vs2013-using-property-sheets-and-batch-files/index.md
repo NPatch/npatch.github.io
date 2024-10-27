@@ -25,40 +25,40 @@ There's only one exception to the properties we can change using custom sheets, 
 
 Step 1: Get the Libraries and Build Files
 
-1) Download the binary version of `FreeGLUT` from this [website](http://www.transmissionzero.co.uk/software/freeglut-devel/), make sure the version you get it `2.6.0 or higher`.
+    1) Download the binary version of `FreeGLUT` from this [website](http://www.transmissionzero.co.uk/software/freeglut-devel/), make sure the version you get it `2.6.0 or higher`.
 
-2) Download the latest binary version of `GLEW` from their [site](http://glew.sourceforge.net/), make sure to download the one labeled `Windows 32-bit`.
+    2) Download the latest binary version of `GLEW` from their [site](http://glew.sourceforge.net/), make sure to download the one labeled `Windows 32-bit`.
 
-3) Download this [Build Files archive](https://drive.google.com/file/d/1UkZI_aQ5fB1DHXn810sE0lbuIh5QcIjp/view?usp=sharing) containing the sheets we mentioned above along with a batch file which we'll explain later.
+    3) Download this [Build Files archive](https://drive.google.com/file/d/1UkZI_aQ5fB1DHXn810sE0lbuIh5QcIjp/view?usp=sharing) containing the sheets we mentioned above along with a batch file which we'll explain later.
 
 Step 2: Create a `Dependencies Folder` and extract libraries there
 
-1) Go to the solution folder and create a Dependencies folder.
+   1) Go to the solution folder and create a Dependencies folder.
 
-2) Extract both `freeglut` and `glew` in the Dependencies folder:
+   2) Extract both `freeglut` and `glew` in the Dependencies folder:
 
-{{< figure src="dependenciesfolder.png" title="freeGLUT and GLEW folders inside the Dependency folder" width="65%">}}
+       {{< figure src="dependenciesfolder.png" title="freeGLUT and GLEW folders inside the Dependency folder" width="65%">}}
 
-3) Seeing as they have some differences in their folder hierarchy I like to go in and make all of them uniform like so:
+   3) Seeing as they have some differences in their folder hierarchy I like to go in and make all of them uniform like so:
 
-{{< figure src="library_file_hierarchy.png" width="65%">}}
+       {{< figure src="library_file_hierarchy.png" width="65%">}}
 
 Step 3: Extract `BuildFiles.zip` in the Solution folder
 
-1) The archive already contains the `Build Files` folder so just extract it in the Solution folder.
+   1) The archive already contains the `Build Files` folder so just extract it in the Solution folder.
 
 Step 4: Set up Project Properties (Compiler)
 
-1) Right click on your project in the solution explorer again, and click on `Properties` in the context menu:
+   1) Right click on your project in the solution explorer again, and click on `Properties` in the context menu:
 
-{{< figure src="step-11.png" width="30%">}}
+       {{< figure src="step-11.png" width="30%">}}
 
-2) ***Make sure*** that before setting any settings to set the `Configuration` drop-down to `All Configurations`:
-{{< figure src="step-12.png" width="40%">}}
+   2) ***Make sure*** that before setting any settings to set the `Configuration` drop-down to `All Configurations`:
+   {{< figure src="step-12.png" width="40%">}}
 
-3) The first change we're going to make is in the `General` property page under the `Configuration Properties` heading. in the property page, change the `Character Set` option under `Project Defaults` to `Not Set` (see highlighted screenshot):
+   3) The first change we're going to make is in the `General` property page under the `Configuration Properties` heading. in the property page, change the `Character Set` option under `Project Defaults` to `Not Set` (see highlighted screenshot):
 
-{{< figure src="step-13.png" width="80%">}}
+       {{< figure src="step-13.png" width="80%">}}
 
 {{< admonition type="note">}}
 You'll notice now in the `Property Manager` that the Unicode Support sheet is no longer in there. When the .vcxproj file is read there's a line near the beginning where a sheet called `Microsoft. Cpp.default.props` is imported to the project. From the Visual Studio Blog:
@@ -69,33 +69,33 @@ You'll notice now in the `Property Manager` that the Unicode Support sheet is no
 
 Step 5: Set up Configurations and Platforms
 
-1) Ideally we want two different configurations(`Debug`, `Release`) in each of two different platforms(`Win32`, `x64`). We can always set up more configurations but for the sake of brevity I'll deal with just these. So for starters open up the `Configuration Manager`.
+   1) Ideally we want two different configurations(`Debug`, `Release`) in each of two different platforms(`Win32`, `x64`). We can always set up more configurations but for the sake of brevity I'll deal with just these. So for starters open up the `Configuration Manager`.
 
-Right click on your project in the solution explorer again, and click on `Properties` in the context menu:
+   Right click on your project in the solution explorer again, and click on `Properties` in the context menu:
 
-{{< figure src="step-11.png"width="30%">}}
+       {{< figure src="step-11.png"width="30%">}}
 
-2) As soon as the `Property Pages` are displayed , click on `Configuration Manager` on the upper right.
+   2) As soon as the `Property Pages` are displayed , click on `Configuration Manager` on the upper right.
 
- {{< figure src="capture7.png" >}}
+       {{< figure src="capture7.png" >}}
 
-3) Click on the `Active solution platform` and then click on `New`.
+   3) Click on the `Active solution platform` and then click on `New`.
 
-{{< figure src="capture1.webp" width="80%">}}
+       {{< figure src="capture1.webp" width="80%">}}
 
-4) Select `x64` as the new platform and keep `Copy settings from` to `Win32` and the `Create new project platforms` checked, then click OK.
+   4) Select `x64` as the new platform and keep `Copy settings from` to `Win32` and the `Create new project platforms` checked, then click OK.
 
-{{< figure src="capture2.png" width="80%">}}
+       {{< figure src="capture2.png" width="80%">}}
 
-5) While at the `Configuration Manager`, click on the first Configuration cell and then click on `New`.
+   5) While at the `Configuration Manager`, click on the first Configuration cell and then click on `New`.
 
-{{< figure src="capture71.png" width="80%">}}
+       {{< figure src="capture71.png" width="80%">}}
 
-6) Repeat 4)
+   6) Repeat 4
 
-7) Now make sure for each combination of `Active solution configuration` and `Active solution platform` that you have the same configuration and platform selected in the `Project Contexts`' equivalent cells. Finally, click on Close. 
+   7) Now make sure for each combination of `Active solution configuration` and `Active solution platform` that you have the same configuration and platform selected in the `Project Contexts`' equivalent cells. Finally, click on Close.
 
-{{< figure src="capture31.png" width="65%">}}
+       {{< figure src="capture31.png" width="65%">}}
 
 {{< admonition type="note" >}}
 In case someone is wondering, the difference between the top options and those of the table below is that the top two are about the solution while the table is about the projects inside the solution. A solution can have multiple projects inside(some of those are libraries, others are about editors and tools etc.). Having a solution at Debug, doesn't mean that all projects have to be set to the Debug configuration and that goes for the platform as well. I.e in case we have a subproject for the Editor that is stable in it's Release configuration and the purpose of this build is to test the subproject that has to do with the Game then we can set the Editor project to Release while keeping the Game project at Debug. Or we might have written the code for the Editor in Win32 because it's not worth it to optimize the Editor for 64bits, whereas the Game is a must. For now lets use the simple case of having just one subproject to the solution and having it match the solution's configuration and platform in each combination.
@@ -106,10 +106,10 @@ Step 6: Property Manager
 1) Open up the `Property Manager`(View->Other Windows->Property Manager)
 {{< figure src="vc10-property-menu.png" width="50%">}}
 
-2) Right click on each folder and select `Add Existing Property Sheet....`
+1) Right click on each folder and select `Add Existing Property Sheet....`
 {{< figure src="new-property-sheet8.png" width="50%">}}
 
-3) Navigate in the file browser to `<Solution Folder>\Build Files\Property Sheets\` and select the file corresponding to the folder you tried to add the sheet to. So if you right clicked the `Debug|Win32` you'll choose `Debug_Win32.props` and so on. In the end you'll get
+1) Navigate in the file browser to `<Solution Folder>\Build Files\Property Sheets\` and select the file corresponding to the folder you tried to add the sheet to. So if you right clicked the `Debug|Win32` you'll choose `Debug_Win32.props` and so on. In the end you'll get
 {{< figure src="propertymanagerendresult.png" width="80%">}}
 
 Aaaaand that's it. Ready to run.

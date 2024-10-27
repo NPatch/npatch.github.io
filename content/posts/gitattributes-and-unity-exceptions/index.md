@@ -26,6 +26,7 @@ As you can see, there's no consistency in behavior across all of them, which mea
 `.gitattributes` rules are executed in order and priority is given to the last matching rule. Meaning, two rules whose patterns match the same file, will execute in order, but the latter is the one that actually affects the file.
 
 So my recommendation is:
+
 ```.gitattributes
 *.asset merge=unityyamlmerge eol=lf
 *TerrainData.asset filter=lfs diff=lfs merge=lfs -text
@@ -38,6 +39,7 @@ Say we have a terrain data file called `SomeScene_TerrainData.asset`. By default
 One more thing I want to talk about is a nifty little tool I found out about while looking into this, called [`git check-attr`](https://www.git-scm.com/docs/git-check-attr). As the name suggests, it outputs attribute information about a file. `filter`, `diff`, `merge`, `-text` are all attributes.
 
 Let's use the terrain file from before and run the following in cmd:
+
 ```cmd
  git check-attr -a SomeScene_TerrainData.asset
 ```
@@ -54,8 +56,7 @@ Additionally, you can test for a specific attribute by replacing `-a` with the n
 
 If you're still up for further reading, I recommend this [comprehensive post](https://www.chunfuchao.com/posts/unity-git-en/#gitattributes) by {{< person url="https://github.com/FrankNine" name="Chao Chun-Fu" nick="FrankNine">}}.
 
-
-[^1]: [ .gitattributes for Unity3D with git-lfs](https://gist.github.com/nemotoo/b8a1c3a0f1225bb9231979f389fd4f3f)
+[^1]: [.gitattributes for Unity3D with git-lfs](https://gist.github.com/nemotoo/b8a1c3a0f1225bb9231979f389fd4f3f)
 [^2]: This is a painful part about having the same extension for both text and binary assets. I first came to know about this in a project where I added lfs and back then I didn't know about these exceptions being binary, so I added .asset to be treated as text. This corrupts binary files due to a feature git uses, called end-of-line normalization, which basically tries to convert line feeds to whatever preset you have set (e.g. lf to crlf), which basically scours the bytes of a file and when it finds a sequence of bytes that matches the line feed it wants to eradicate, it changes those bytes. In a binary file, this spells corruption. Couple it with git and someone with no knowledge of the file being binary in nature and you have countless hours of head scratching, cursing at the screen and forum posts trying to figure out why.
 [^3]:  assume, it's something similar to how animation stores paths of bones and when one gets renamed, the animation clip gets corrupted.
 [^4]: More info in [Git and normalization of line-endings](https://dev.to/kevinshu/git-and-normalization-of-line-endings-228j)

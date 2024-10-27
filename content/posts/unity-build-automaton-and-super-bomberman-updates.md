@@ -6,6 +6,7 @@ title = 'Unity Build Automaton and Super Bomberman updates'
 Links have been updated in their respective Project pages.
 
 ## Unity Build Automaton
+
 ---
 
 Added checkbox for backing up the loaded project prior to any kind of action
@@ -15,11 +16,12 @@ Added checkbox for converting whitespace and tab characters in the project's nam
 Added tutorial and several notes for running the tool to be available when running it
 
 ## Super Bomberman v3
+
 ---
 
 Uploaded new version of the game for all previously supported platforms and architectures.
 
-The game is now fully playable.But there's still room for improvement.
+The game is now fully playable. But there's still room for improvement.
 
 Most core systems work very well. Performance has been optimized to run below 15ms. Ideally the game can run ~3.5ms depending on CPU load. The factor that determines the performance is the random number generator algorithm that is used (quite heavily in the dynamic level generation). When the CPU load is acceptable it can run with in 2-3 ms. Dynamic Level Generation is happening in the background as you are playing, but because Unity Coroutines are not true threaded parallelism but pseudo/round robin in nature , the random number algorithm weighs very much in benchmarking. Reason is that the generation algorithm is testing randomly chosen positions in the grid for an object's creation validity. For example, I want to spawn a Hard Wall, I chose a position and test whether a Hard Wall at that position violates any of the level generation rules I've set. If not then I carry on, otherwise I enquire for a new position to the random number generator. Provided that Bomberman has 3 lives to waste and plenty of time to do it , the time needed to generate a new level is a lot less.
 

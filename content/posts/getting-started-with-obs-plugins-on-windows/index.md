@@ -108,12 +108,15 @@ failed with error: HASH mismatch: expected:
 {{< /admonition >}}
 
 ## CMake
+
 ---
-Make sure you have a CMake version installed that's within the range of versions supported by the project. You can find out the minimum version by taking the max out of  1)`CMakePresest.json`'s property and 2) the minimum of the range in the root `CMakeLists.txt` (both of which are shown in the subsequent subsections). 
+
+Make sure you have a CMake version installed that's within the range of versions supported by the project. You can find out the minimum version by taking the max out of  1)`CMakePresest.json`'s property and 2) the minimum of the range in the root `CMakeLists.txt` (both of which are shown in the subsequent subsections).
 
 To save yourselves some trouble, make sure CMake is in the `PATH` environment variable, especially if you intend to use an external terminal.
 
 In vscode, you can also install the `twxs.cmake`(language support) and the `ms-vscode.cmake-tools`(various tools and settings for a CMake workflow) extensions to help you with CMake.
+
 ### CMakePresets.json
 
  This template project is using the new CMake approach where you define presets in a `CMakePresets.json` file for almost every different aspect of the workflow and those presets are then fed to the CMake files and executed.
@@ -194,7 +197,7 @@ Firstly, `version` determines the capabilities of CMake you can utilize and `cma
     ],
 ```
 
-Configure presets, as implied, is a collection of options you can provide `CMake configure` with. The most notable part is in the template preset which is the base preset all others inherit from. You'll notice it contains both optional switches, the `Frontend API` and the `Qt` framework, which are both listed in the plugin template repository's README. 
+Configure presets, as implied, is a collection of options you can provide `CMake configure` with. The most notable part is in the template preset which is the base preset all others inherit from. You'll notice it contains both optional switches, the `Frontend API` and the `Qt` framework, which are both listed in the plugin template repository's README.
 
 {{< admonition type="tip" >}}
 If you need these extra options enabled, use the template preset. Because, as mentioned before, the repository contains github actions which will run on every commit you push. And it will run for macOS and linux as well which will likely give you a fail mark if not set up properly. Switching the options in the template preset will propagate those switches to the other OS presets and, at least, take care of downloading the correct dependencies and linking to them. Basically saves you the hustle of tracking all places those switches are needed at and modifying other files.
@@ -204,7 +207,7 @@ Another interesting part is that you can define CMake variables here to be cache
 
 ```json
     "buildPresets": [
-	    ...
+        ...
         {
             "name": "macos",
             "configurePreset": "macos",
@@ -225,13 +228,14 @@ Another interesting part is that you can define CMake variables here to be cache
 ```
 
 As for build presets, you'll notice that all of them are in Release mode, with the windows preset being Release with PDBs(`RelWithDebInfo`).
+
 ### CMakeLists.txt (root)
 
 Before executing anything, let's look at the root level `CMakeLists.txt`.
 
 This is the main script that controls the compilation and linking of the final product.
 
-You can see the options for enabling Frontend and QT here set to OFF, but they will be overridden by the values, mentioned before, in `CMakePresets`. 
+You can see the options for enabling Frontend and QT here set to OFF, but they will be overridden by the values, mentioned before, in `CMakePresets`.
 
 ```cmake
 cmake_minimum_required(VERSION 3.16...3.26)
@@ -280,6 +284,7 @@ The only part you need to care about is the `target_sources` directive. You basi
 ### Configure
 
 In the Terminal tab, execute the following:
+
 ```cmd
 cmake --preset windows-x64
 ```
@@ -293,7 +298,8 @@ Once the dependencies are downloaded, the `build_x64` folder is finalized.
 ### Build
 
 To build, execute the following in the terminal:
-```
+
+```cmd
 cmake --build --preset windows-x64
 ```
 
@@ -302,6 +308,7 @@ The preset dictates the `configuration`, which defaults to `ReleaseWithDebInfo`,
 {{< admonition type="info">}}
 The build log will show a `plugin-support.lib` created as well, which we also know about because the `plugin-support.h` is included in `plugin-main.c`. By the extension, you can glean that it's a static library. On link time, it will be embedded to the final binary, which in this case is a dll file, `[your-project-name].dll`.
 {{< /admonition >}}
+
 ### Install
 
 Using CMake's install functionality, we can deploy the previously built files where we like and how we like. More specifically, that last part from the root level `CMakeLists.txt` is where the install step is invoked.
@@ -313,6 +320,7 @@ set_target_properties_plugin(${CMAKE_PROJECT_NAME} PROPERTIES OUTPUT_NAME ${_nam
 This function is located in the `helpers.cmake` in `cmake\windows`.
 
 In this function we can see the install call:
+
 ```cmake
 install(
     TARGETS ${target}
@@ -321,6 +329,7 @@ install(
 ```
 
 Install defaults to using `CMAKE_INSTALL_PREFIX` as the location for those relative paths. If `CMAKE_INSTALL_PREFIX` is not set, it defaults to the following:
+
 - `c:/Program Files/${PROJECT_NAME}` on Windows.
 - `/usr/local` on UNIX platforms.
 as per the CMake documentation.
@@ -334,7 +343,7 @@ Note that if you want to deploy them in the default installation  directory, you
 Among other things, `set_target_properties_plugin` checks if the `OBS_BUILD_DIR` variable has been set and if so, will deploy all files there *as well*.
 
 {{< admonition type="tip">}}
-Do not use `OBS_BUILD_DIR` unless you have also set `CMAKE_INSTALL_PREFIX` and expect both of them used for deployment, because as explained earlier, the default path will ensure the execution fails, before it even tries to deploy in `OBS_BUILD_DIR`. 
+Do not use `OBS_BUILD_DIR` unless you have also set `CMAKE_INSTALL_PREFIX` and expect both of them used for deployment, because as explained earlier, the default path will ensure the execution fails, before it even tries to deploy in `OBS_BUILD_DIR`.
 {{< /admonition>}}
 
 Initially, I had set `CMAKE_INSTALL_PREFIX` to `.\release`, which is also the path used by the Powershell scripts the Github Actions expect. Alas, this is not the recommended way, since those Powershell scripts are designed to be used in a CI context alone, regardless of working for local builds as well.
@@ -345,7 +354,9 @@ The structure looks like:
 The `data` folder contains assets and the localizations mostly. Both `data` and `obs-plugins` mimic the directory the plugin is supposed to be installed under, in obs' ProgramFiles install folder.
 
 ## Testing
+
 ---
+
 The easiest way I can think of, for testing your plugin code, would be to go to `obs-studio` GitHub, at the Releases and download the latest portable obs and its pdbs.
 
 {{< figure src="pasted-image-20241010191129-1.webp" width="100%">}}
@@ -353,6 +364,7 @@ The easiest way I can think of, for testing your plugin code, would be to go to 
 Deploy it in a directory next to your project's root folder and use vscode's launch.json to define a configuration for running an executable with a debugger attached.
 
 An example of the `.vscode/launch.json`:
+
 ```json
 {
     // Use IntelliSense to learn about possible attributes.
@@ -380,6 +392,7 @@ Now that the portable obs-studio is installed, we can add a step to install the 
 
 We can use `CMAKE_INSTALL_PREFIX` to point to the portable obs directory.
 To achieve that, we'll modify the `windows-x64` configure preset in `CMakePresets.json` again:
+
 ```json
 ...
 {
@@ -438,6 +451,7 @@ This is merely replicating the way other dependencies are set up. We use the CRC
 The second step is to incorporate them to the same CMake file that handles their download and verification, which is `buildspec.cmake` in `cmake/windows`.
 
 Add the following right before `_check_dependencies()`:
+
 ```cmake
 ...
 ##############################################################################
@@ -460,9 +474,11 @@ The final step is to modify the `CMAKE_INSTALL_PREFIX` in the `cacheVariables` p
 If the `.deps` folder is deleted, the testing obs will be downloaded and set up much like the rest and provided the relative paths in `CMAKE_INSTALL_PREFIX` are correct, you can debug out of the box.
 
 Disclaimer: I did try to use the already downloaded `obs-studio` repository clone in `.deps`, but unfortunately it's not possible to build it without the necessary submodules. And those can only be downloaded using `git submodule` commands, but since the archive we download lacks the .git folder, it's not possible to run those. I know it is a waste of space, but changing the provided CMake scripts to download the full thing is more of a change than I'm comfortable making. To be honest, I did not like modifying the .cmake files to integrate the portable obs as a dependency, but I do not know of a way to additively hijack CMake without, at the very least, in include within the root CMake. As a result, getting updates from the plugintemplate will involve manual work.
+
 ### Tasks.json
 
 In case you didn't install the previously recommended CMake extension, you can use the following `tasks.json`:
+
 ```json
 {
     // See https://go.microsoft.com/fwlink/?LinkId=733558
@@ -532,11 +548,11 @@ In case you didn't install the previously recommended CMake extension, you can u
                 "showReuseMessage": false
             }
         }
-	}
+    }
 }
 ```
 
-It creates tasks for each cmake stage you need. They are all executed in a shell and provide all the necessary arguments. 
+It creates tasks for each cmake stage you need. They are all executed in a shell and provide all the necessary arguments.
 
 You need to use `Tasks: Run Task` or `Tasks: Run Build Task` for them to be ran.
 
@@ -545,14 +561,17 @@ Overriding `problemMatcher` with an empty one, gets rid of the dropdown options 
 The `presentation` bundle deals in how the terminal that will be summoned for this task behaves. It makes sure the terminal that gets summoned gets focus, is shared meaning all queued tasks will run in the same terminal instance, is not cleared after each task executes, does not close after all of them finish, And `showReuseMessage` is false so you don't have to see the message about the terminal being reused. Unfortunately I haven't found how to keep the terminal open only in case of failure and close it on success.
 
 If you *did* install the `ms-vscode.cmake-tools` extension, it will create Commands you can instantly use from the `Command Palette` without using any of the `Tasks: Run..` commands. You will find that it adds the following CMake `Commands`:
-* `CMake: configure`
-* `CMake: build`
-* `CMake: install`
+
+- `CMake: configure`
+- `CMake: build`
+- `CMake: install`
 
 First use will require you to write CMake to get the list of possible commands, but after first use, they will popup as soon as you summon the `Command Palette`.
 
 ## Packaging
+
 ---
+
 There are two options for packaging: a) `archive` (.zip) or b) `Inno Setup` installer.
 
 The `Inno Setup` `.iss` file, which can be used to build the installer, is generated by the `cmake configure` step. Unfortunately this generation has been set up mostly for use with the Github Actions' scripts, so the `.iss` expects you to have the plugin files in a `release\RelWithDebInfo` folder and so does the archiving code in the relevant Powershell script.
@@ -564,11 +583,13 @@ The solution I opted for was to take `Package-Windows.ps1` and extract its depen
 The script can be ran with -Debug switch which allows the Debug logs to become visible.
 
 To run:
+
 ```
 ./build-aux/Install-Windows.ps1 -Intent Testing/Archive/BuildInstaller
 ```
 
 `Intent` defaults to `Testing`.
+
 ### vscode extension
 
 Task runner is a pet peeve of mine. I don't like having to run an intermediate step for a task that should be easily accessible and perhaps frequently used in this project.
@@ -576,7 +597,8 @@ Task runner is a pet peeve of mine. I don't like having to run an intermediate s
 The difference is that you can only define Tasks in a project and Command Palette only lists Commands. I guess it was time to look into vscode extension development.
 
 Enter `obs-plugin-template-tasks`, hosted on [GitHub](https://github.com/NPatch/obs-plugin-template-tasks). It creates 3 new Commands:
-* `plugtemp.testing`: Performs CMake install using --prefix CMAKE_INSTALL_PREFIX.
+
+- `plugtemp.testing`: Performs CMake install using --prefix CMAKE_INSTALL_PREFIX.
 - `plugtemp.archive`: Runs CMake install to `${workspaceFolder}\release\${Configuration}` and creates a zip archive of its contents which can be found in the `release` folder.
 - `plugtemp.build-installer`: Runs CMake install to `${workspaceFolder}\release\${Configuration}` and creates an Inno Setup installer of its contents which can be found in the `release` folder.
 
