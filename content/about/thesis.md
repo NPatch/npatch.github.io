@@ -1,6 +1,5 @@
 +++
 date = '2014-01-14T14:38:59+02:00'
-draft = false
 title = "Bachelors' Thesis"
 +++
 
