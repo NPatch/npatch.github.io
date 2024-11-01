@@ -1,6 +1,5 @@
 +++
 date = '2024-10-27T11:46:56+02:00'
-draft = false
 title = 'CV'
 +++
 
