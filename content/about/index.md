@@ -7,4 +7,4 @@ I'm a former research staff engineer from Greece. I have worked on a variety of 
 
 When I'm not working, I test adventure games for fun. I'm a credited beta tester for a few games by Wadjet Eye Games, SkyGoblin, The Sleeping Machine AB and Venture Moon Industries.
 
-My [CV]({{< ref "/about/material/cv" >}} "CV")
+My [CV]({{< ref "/materials/cv" >}} "CV")

@@ -1,6 +1,7 @@
 +++
-title = 'material'
+title = 'materials'
 [build]
   list = 'never'
   render = 'never'
 +++
+

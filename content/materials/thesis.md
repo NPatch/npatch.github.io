@@ -1,6 +1,7 @@
 +++
 date = '2014-01-14T14:38:59+02:00'
 title = "Bachelors' Thesis"
+url = '/about/thesis'
 +++
 
 My bachelor's thesis was about the COLLADA format. Those of you who don't know COLLADA it's a format created with the goal of uniting all graphics software for the benefit of the artist([Wikipedia](http://en.wikipedia.org/wiki/COLLADA) has a very good summary imho).But it's [standard](http://www.khronos.org/collada/) is still under development and the importer/exporter plugins have limited support for features.
