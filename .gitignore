@@ -18,4 +18,3 @@ data/callouttypes.json
 layouts/partials/shortcodes/callout.html
 layouts/shortcodes/callout.html
 layouts/shortcodes/callout-test.html
-static/css/callout.css
